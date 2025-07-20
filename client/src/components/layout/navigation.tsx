@@ -68,10 +68,10 @@ export function Navigation() {
               className="flex items-center space-x-3 cursor-pointer"
               onClick={() => scrollToSection("home")}
             >
-              <div className="w-8 h-8 bg-gradient-to-r from-primary-light to-accent rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
                 <Zap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold gradient-text">Synexian Labs</span>
+              <span className="text-xl font-bold bg-gradient-to-r from-blue-900 to-purple-600 bg-clip-text text-transparent">Synexian Labs</span>
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -80,7 +80,7 @@ export function Navigation() {
                 <div key={item.id} className="relative group">
                   <button
                     onClick={item.action}
-                    className="text-foreground hover:text-primary transition-colors duration-200 flex items-center space-x-1"
+                    className="text-gray-900 hover:text-blue-600 transition-colors duration-200 flex items-center space-x-1 font-medium"
                   >
                     <span>{item.label}</span>
                     {item.dropdown && <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" />}
@@ -109,7 +109,7 @@ export function Navigation() {
             <div className="hidden md:flex items-center space-x-4">
               <button
                 onClick={() => window.open('/admin', '_blank')}
-                className="text-neutral hover:text-primary transition-colors duration-200 text-sm"
+                className="text-gray-600 hover:text-blue-600 transition-colors duration-200 text-sm font-medium"
               >
                 Admin
               </button>

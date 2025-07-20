@@ -15,7 +15,7 @@ export function Services() {
         "Custom AI Models",
         "Natural Language Processing"
       ],
-      gradient: "from-primary-light to-accent",
+      gradient: "from-blue-600 to-purple-600",
     },
     {
       icon: Settings,
@@ -27,7 +27,7 @@ export function Services() {
         "CI/CD Pipelines",
         "Scalable Infrastructure"
       ],
-      gradient: "from-accent to-primary-gradient",
+      gradient: "from-green-600 to-purple-600",
     },
     {
       icon: Users,
@@ -39,7 +39,7 @@ export function Services() {
         "Implementation Support",
         "Change Management"
       ],
-      gradient: "from-cta-orange to-accent",
+      gradient: "from-orange-600 to-blue-600",
     },
   ];
 
@@ -51,7 +51,7 @@ export function Services() {
   };
 
   return (
-    <section id="services" className="py-20 bg-card">
+    <section id="services" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -61,10 +61,10 @@ export function Services() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="mb-4">
-            <span className="gradient-text">Powerful Solutions</span> for Modern Business
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+            <span className="bg-gradient-to-r from-blue-900 to-purple-600 bg-clip-text text-transparent">Powerful Solutions</span> for Modern Business
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Comprehensive AI and automation services designed to streamline operations, 
             enhance productivity, and drive innovation across your organization.
           </p>

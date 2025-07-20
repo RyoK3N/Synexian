@@ -16,12 +16,12 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-primary-gradient/5 pt-20 pb-32">
+    <section id="home" className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 pt-20 pb-32">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-light/20 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "-2s" }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-primary-gradient/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "-4s" }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "-2s" }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-indigo-400/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "-4s" }} />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,10 +38,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center space-x-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-2 mb-6"
+              className="inline-flex items-center space-x-2 bg-blue-100 border border-blue-200 rounded-full px-4 py-2 mb-6"
             >
-              <Sparkles className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium text-foreground">AI-Powered Business Solutions</span>
+              <Sparkles className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-medium text-blue-900">AI-Powered Business Solutions</span>
             </motion.div>
 
             {/* Headline */}
@@ -51,8 +51,8 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="mb-6"
             >
-              <span className="gradient-text">Transform</span> your business with{" "}
-              <span className="gradient-text">AI & Automation</span>
+              <span className="bg-gradient-to-r from-blue-900 to-purple-600 bg-clip-text text-transparent">Transform</span> your business with{" "}
+              <span className="bg-gradient-to-r from-blue-900 to-purple-600 bg-clip-text text-transparent">AI & Automation</span>
             </motion.h1>
 
             {/* Subheading */}

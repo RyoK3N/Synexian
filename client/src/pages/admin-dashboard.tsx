@@ -49,7 +49,7 @@ export default function AdminDashboard() {
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -65,7 +65,7 @@ export default function AdminDashboard() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={() => setLocation("/admin")} variant="outline" className="w-full">
+            <Button onClick={() => window.location.href = "/admin"} variant="outline" className="w-full">
               Back to Login
             </Button>
           </CardContent>
@@ -88,26 +88,26 @@ export default function AdminDashboard() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-background"
+      className="min-h-screen bg-gray-50"
     >
       {/* Header */}
-      <header className="border-b border-border bg-card">
+      <header className="border-b border-gray-200 bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-primary-light to-accent rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
                 <Zap className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-foreground">Synexian Labs</h1>
-                <p className="text-sm text-muted-foreground">Analytics Dashboard</p>
+                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-900 to-purple-600 bg-clip-text text-transparent">Synexian Labs</h1>
+                <p className="text-sm text-gray-600">Analytics Dashboard</p>
               </div>
             </div>
 
             <div className="flex items-center space-x-4">
               <div className="text-right">
-                <p className="text-sm font-medium text-foreground">{user.username}</p>
-                <p className="text-xs text-muted-foreground">{user.role}</p>
+                <p className="text-sm font-medium text-gray-900">{user.username}</p>
+                <p className="text-xs text-gray-600">{user.role}</p>
               </div>
               <Button
                 onClick={handleLogout}
@@ -132,10 +132,10 @@ export default function AdminDashboard() {
           transition={{ delay: 0.1 }}
           className="mb-8"
         >
-          <h2 className="text-3xl font-bold text-foreground mb-2">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
             Welcome back, {user.username}!
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-gray-600">
             Here's what's happening with your business today.
           </p>
         </motion.div>
