@@ -116,19 +116,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
     credentials: true,
   }));
 
-  // Initialize admin user if not exists
+  // Initialize admin user (always update password to ensure consistency)
   const initializeAdminUser = async () => {
     try {
       const existingAdmin = await storage.getUserByUsername('admin');
+      const hashedPassword = await bcrypt.hash('Agent0#Synexianlabs@0630', SALT_ROUNDS);
+      
       if (!existingAdmin) {
-        const hashedPassword = await bcrypt.hash('Agent0#Synexianlabs@0630', SALT_ROUNDS);
         await storage.createUser({
           username: 'admin',
           email: 'admin@synexianlabs.com',
           password: hashedPassword,
           role: 'admin',
         });
-        console.log('Default admin user created - Username: admin, Password: Agent0#Synexianlabs@0630');
+        console.log('Default admin user created with new secure password');
+      } else {
+        // Update existing admin password to new secure password
+        await storage.updateUserPassword('admin', hashedPassword);
+        console.log('Admin password updated to new secure password');
       }
     } catch (error) {
       console.error('Failed to initialize admin user:', error);

@@ -17,7 +17,6 @@ import { apiRequest } from "@/lib/queryClient";
 const loginSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
   password: z.string().min(6, "Password must be at least 6 characters"),
-  twoFactor: z.string().optional(),
 });
 
 type LoginForm = z.infer<typeof loginSchema>;
@@ -34,7 +33,6 @@ export default function AdminLogin() {
     defaultValues: {
       username: "",
       password: "",
-      twoFactor: "",
     },
   });
 
@@ -159,22 +157,7 @@ export default function AdminLogin() {
                 )}
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="twoFactor" className="flex items-center space-x-2">
-                  <Shield className="w-4 h-4" />
-                  <span>2FA Code (Optional)</span>
-                </Label>
-                <Input
-                  id="twoFactor"
-                  {...form.register("twoFactor")}
-                  className="focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter 6-digit code (use 123456 for demo)"
-                  maxLength={6}
-                />
-                <p className="text-xs text-gray-600">
-                  For demo purposes, use code: 123456
-                </p>
-              </div>
+
 
               <Button
                 type="submit"
@@ -195,11 +178,7 @@ export default function AdminLogin() {
               </Button>
             </form>
 
-            <div className="mt-6 text-center">
-              <p className="text-xs text-gray-600">
-                Demo credentials: admin / Agent0#Synexianlabs@0630
-              </p>
-            </div>
+
 
             <motion.div
               initial={{ opacity: 0 }}
