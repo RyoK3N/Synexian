@@ -4,51 +4,57 @@
 @tailwind utilities;
 
 :root {
-  /* Brand Colors */
-  --primary-base: hsl(248, 24%, 31%);
-  --primary-light: hsl(243, 39%, 59%);
-  --primary-gradient: hsl(270, 100%, 75%);
-  --accent: hsl(190, 100%, 67%);
-  --accent-secondary: hsl(244, 46%, 80%);
+  /* Brand Colors - Modern Tech Palette */
+  --primary-base: hsl(221, 83%, 53%); /* Trust Blue */
+  --primary-light: hsl(217, 91%, 60%); /* Lighter Blue */
+  --primary-gradient: hsl(262, 83%, 58%); /* Purple Accent */
+  --accent: hsl(142, 71%, 45%); /* Success Green */
+  --accent-secondary: hsl(217, 91%, 60%); /* Secondary Blue */
   
   /* High-Converting Colors */
-  --cta-orange: hsl(14, 100%, 60%);
-  --trust-blue: hsl(214, 100%, 40%);
-  --success: hsl(142, 71%, 45%);
+  --cta-orange: hsl(25, 95%, 53%); /* High-conversion Orange */
+  --trust-blue: hsl(221, 83%, 53%); /* Primary Trust Blue */
+  --success: hsl(142, 71%, 45%); /* Success Green */
   
   /* Neutrals */
-  --neutral-light: hsl(216, 33%, 97%);
-  --neutral: hsl(215, 16%, 47%);
-  --neutral-dark: hsl(217, 33%, 17%);
+  --neutral-light: hsl(0, 0%, 98%); /* Almost White */
+  --neutral: hsl(215, 16%, 47%); /* Medium Gray */
+  --neutral-dark: hsl(222, 84%, 5%); /* Deep Navy */
+  
+  /* Contrast Utilities */
+  --text-on-light: hsl(222, 84%, 5%); /* Dark text on light backgrounds */
+  --text-on-dark: hsl(0, 0%, 100%); /* Light text on dark backgrounds */
+  --icon-on-light: hsl(222, 84%, 5%); /* Dark icons on light backgrounds */
+  --icon-on-dark: hsl(0, 0%, 100%); /* Light icons on dark backgrounds */
 
-  /* Shadcn Variables */
-  --background: hsl(216, 33%, 97%);
-  --foreground: hsl(248, 24%, 31%);
-  --muted: hsl(216, 20%, 95%);
-  --muted-foreground: hsl(215, 16%, 47%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(248, 24%, 31%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(248, 24%, 31%);
-  --border: hsl(244, 46%, 80%);
-  --input: hsl(244, 46%, 80%);
-  --primary: hsl(190, 100%, 67%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(216, 20%, 95%);
-  --secondary-foreground: hsl(248, 24%, 31%);
-  --accent: hsl(216, 20%, 95%);
-  --accent-foreground: hsl(248, 24%, 31%);
-  --destructive: hsl(0, 84%, 60%);
-  --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(248, 24%, 31%);
+  /* Shadcn Variables - Light Theme */
+  --background: hsl(0, 0%, 100%); /* Pure White */
+  --foreground: hsl(222, 84%, 5%); /* Deep Navy Text */
+  --muted: hsl(210, 40%, 96%); /* Light Gray */
+  --muted-foreground: hsl(215, 16%, 47%); /* Medium Gray */
+  --popover: hsl(0, 0%, 100%); /* White */
+  --popover-foreground: hsl(222, 84%, 5%); /* Dark Text */
+  --card: hsl(0, 0%, 100%); /* White Cards */
+  --card-foreground: hsl(222, 84%, 5%); /* Dark Text on Cards */
+  --border: hsl(214, 32%, 91%); /* Light Border */
+  --input: hsl(214, 32%, 91%); /* Light Input Border */
+  --primary: hsl(221, 83%, 53%); /* Trust Blue */
+  --primary-foreground: hsl(0, 0%, 100%); /* White Text on Primary */
+  --secondary: hsl(210, 40%, 96%); /* Light Gray Secondary */
+  --secondary-foreground: hsl(222, 84%, 5%); /* Dark Text on Secondary */
+  --accent: hsl(142, 71%, 45%); /* Success Green */
+  --accent-foreground: hsl(0, 0%, 100%); /* White Text on Accent */
+  --destructive: hsl(0, 84%, 60%); /* Error Red */
+  --destructive-foreground: hsl(0, 0%, 98%); /* Light Text on Destructive */
+  --ring: hsl(221, 83%, 53%); /* Trust Blue Ring */
   --radius: 0.75rem;
   
-  /* Chart colors */
-  --chart-1: hsl(190, 100%, 67%);
-  --chart-2: hsl(243, 39%, 59%);
-  --chart-3: hsl(270, 100%, 75%);
-  --chart-4: hsl(14, 100%, 60%);
-  --chart-5: hsl(142, 71%, 45%);
+  /* Chart colors - Updated for better brand alignment */
+  --chart-1: hsl(221, 83%, 53%); /* Trust Blue */
+  --chart-2: hsl(262, 83%, 58%); /* Purple Accent */
+  --chart-3: hsl(142, 71%, 45%); /* Success Green */
+  --chart-4: hsl(25, 95%, 53%); /* CTA Orange */
+  --chart-5: hsl(217, 91%, 60%); /* Secondary Blue */
 }
 
 .dark {
@@ -102,37 +108,54 @@
 
 @layer components {
   .gradient-text {
-    background: linear-gradient(135deg, var(--primary-light), var(--primary-gradient));
+    background: linear-gradient(135deg, hsl(221, 83%, 53%), hsl(262, 83%, 58%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .cta-gradient {
-    background: linear-gradient(135deg, var(--cta-orange), var(--accent));
+    background: linear-gradient(135deg, hsl(25, 95%, 53%), hsl(142, 71%, 45%));
   }
 
   .glass-nav {
-    background: rgba(248, 250, 252, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(221, 83%, 53%, 0.1);
   }
 
-  /* Text contrast utilities */
-  .text-contrast-dark {
-    @apply text-white;
+  /* Text contrast utilities for light text on dark backgrounds */
+  .text-on-dark {
+    color: var(--text-on-dark);
   }
 
-  .text-contrast-light {
-    @apply text-gray-900;
+  /* Text contrast utilities for dark text on light backgrounds */
+  .text-on-light {
+    color: var(--text-on-light);
   }
 
-  .icon-contrast-dark {
-    @apply text-white;
+  /* Icon contrast utilities for light icons on dark backgrounds */
+  .icon-on-dark {
+    color: var(--icon-on-dark);
   }
 
-  .icon-contrast-light {
-    @apply text-gray-900;
+  /* Icon contrast utilities for dark icons on light backgrounds */
+  .icon-on-light {
+    color: var(--icon-on-light);
+  }
+
+  /* Better gradient backgrounds */
+  .gradient-bg-primary {
+    background: linear-gradient(135deg, hsl(221, 83%, 53%), hsl(262, 83%, 58%));
+  }
+
+  .gradient-bg-success {
+    background: linear-gradient(135deg, hsl(142, 71%, 45%), hsl(217, 91%, 60%));
+  }
+
+  .gradient-bg-warning {
+    background: linear-gradient(135deg, hsl(25, 95%, 53%), hsl(45, 93%, 47%));
   }
 
   .animate-float {
