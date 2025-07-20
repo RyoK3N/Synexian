@@ -44,6 +44,7 @@ export function Navigation() {
         { label: "Strategic Consulting", action: () => scrollToSection("services") },
       ]
     },
+    { id: "suites", label: "Suites", action: () => window.location.href = "/suites" },
     { id: "about", label: "About", action: () => scrollToSection("about") },
     { id: "contact", label: "Contact", action: () => scrollToSection("contact") },
   ];

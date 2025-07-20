@@ -118,6 +118,23 @@
     -webkit-backdrop-filter: blur(20px);
   }
 
+  /* Text contrast utilities */
+  .text-contrast-dark {
+    @apply text-white;
+  }
+
+  .text-contrast-light {
+    @apply text-gray-900;
+  }
+
+  .icon-contrast-dark {
+    @apply text-white;
+  }
+
+  .icon-contrast-light {
+    @apply text-gray-900;
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }

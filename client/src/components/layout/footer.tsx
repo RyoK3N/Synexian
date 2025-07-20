@@ -18,9 +18,9 @@ export function Footer() {
       title: "Company",
       links: [
         { label: "About Us", href: "#about" },
+        { label: "Our Suites", href: "/suites" },
         { label: "Contact", href: "#contact" },
         { label: "Careers", href: "#" },
-        { label: "Blog", href: "#" },
       ],
     },
     {
@@ -40,10 +40,14 @@ export function Footer() {
     { icon: Github, href: "#", label: "GitHub" },
   ];
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId.replace('#', ''));
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const handleLinkClick = (href: string) => {
+    if (href.startsWith('#')) {
+      const element = document.getElementById(href.replace('#', ''));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.location.href = href;
     }
   };
 
