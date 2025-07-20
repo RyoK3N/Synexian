@@ -43,19 +43,29 @@ declare module 'express-serve-static-core' {
 // Middleware to verify JWT token
 const authenticateToken = (req: any, res: any, next: any) => {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+  const token = authHeader && authHeader.startsWith('Bearer ') 
+    ? authHeader.slice(7) 
+    : authHeader;
 
   if (!token) {
+    console.log('No token provided:', { authHeader, headers: req.headers });
     return res.status(401).json({ message: 'Access token required' });
   }
 
-  jwt.verify(token, JWT_SECRET, (err: any, user: any) => {
-    if (err) {
-      return res.status(403).json({ message: 'Invalid or expired token' });
-    }
-    req.user = user;
-    next();
-  });
+  try {
+    jwt.verify(token, JWT_SECRET, (err: any, decoded: any) => {
+      if (err) {
+        console.log('JWT verification error:', err.message);
+        return res.status(403).json({ message: 'Invalid or expired token' });
+      }
+      
+      req.user = decoded;
+      next();
+    });
+  } catch (error) {
+    console.log('Token verification error:', error);
+    return res.status(403).json({ message: 'Invalid token format' });
+  }
 };
 
 // Helper function to log activity
@@ -79,6 +89,9 @@ const logActivity = async (type: string, description: string, req: any, userId?:
 };
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Configure trust proxy for rate limiting
+  app.set('trust proxy', 1);
+  
   // Security middleware with CSP configuration
   app.use(helmet({
     contentSecurityPolicy: {
@@ -205,6 +218,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message: 'Invalid login data',
         error: error instanceof Error ? error.message : 'Unknown error' 
       });
+    }
+  });
+
+  // Verify JWT token endpoint
+  app.get('/api/admin/verify', authenticateToken, async (req, res) => {
+    try {
+      const user = await storage.getUser(req.user!.userId);
+      
+      if (!user) {
+        return res.status(401).json({ valid: false, message: 'User not found' });
+      }
+
+      res.json({
+        valid: true,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          role: user.role,
+        },
+      });
+    } catch (error) {
+      console.error('Token verification error:', error);
+      res.status(500).json({ valid: false, message: 'Server error during verification' });
     }
   });
 

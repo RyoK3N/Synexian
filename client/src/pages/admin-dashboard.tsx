@@ -23,35 +23,13 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { getQueryFn, apiRequest } from "@/lib/queryClient";
+import { AuthGuard } from "@/components/auth-guard";
+import { authService } from "@/lib/auth";
 import type { AnalyticsData } from "@/types/analytics";
 
 export default function AdminDashboard() {
-  const [, setLocation] = useLocation();
   const { toast } = useToast();
-  const [user, setUser] = useState<any>(null);
-
-  // Check authentication on mount
-  useEffect(() => {
-    const token = localStorage.getItem("admin_token");
-    const userData = localStorage.getItem("admin_user");
-
-    if (!token || !userData) {
-      toast({
-        title: "Access Denied",
-        description: "Please login to access the dashboard.",
-        variant: "destructive",
-      });
-      setLocation("/admin");
-      return;
-    }
-
-    try {
-      setUser(JSON.parse(userData));
-    } catch (error) {
-      console.error("Failed to parse user data:", error);
-      setLocation("/admin");
-    }
-  }, [setLocation, toast]);
+  const user = authService.getUser();
 
   // Fetch analytics data
   const { data: analytics, isLoading, error } = useQuery({
@@ -61,13 +39,11 @@ export default function AdminDashboard() {
   });
 
   const handleLogout = () => {
-    localStorage.removeItem("admin_token");
-    localStorage.removeItem("admin_user");
+    authService.logout();
     toast({
       title: "Logged Out",
       description: "You have been successfully logged out.",
     });
-    setLocation("/admin");
   };
 
   if (!user) {
@@ -107,7 +83,8 @@ export default function AdminDashboard() {
   };
 
   return (
-    <motion.div
+    <AuthGuard requireAdmin={true}>
+      <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -383,5 +360,6 @@ export default function AdminDashboard() {
         </motion.div>
       </main>
     </motion.div>
+    </AuthGuard>
   );
 }
