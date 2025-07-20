@@ -121,14 +121,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const existingAdmin = await storage.getUserByUsername('admin');
       if (!existingAdmin) {
-        const hashedPassword = await bcrypt.hash('admin123!@#', SALT_ROUNDS);
+        const hashedPassword = await bcrypt.hash('Agent0#Synexianlabs@0630', SALT_ROUNDS);
         await storage.createUser({
           username: 'admin',
           email: 'admin@synexianlabs.com',
           password: hashedPassword,
           role: 'admin',
         });
-        console.log('Default admin user created - Username: admin, Password: admin123!@#');
+        console.log('Default admin user created - Username: admin, Password: Agent0#Synexianlabs@0630');
       }
     } catch (error) {
       console.error('Failed to initialize admin user:', error);

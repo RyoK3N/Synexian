@@ -197,7 +197,7 @@ export default function AdminLogin() {
 
             <div className="mt-6 text-center">
               <p className="text-xs text-gray-600">
-                Demo credentials: admin / admin123!@#
+                Demo credentials: admin / Agent0#Synexianlabs@0630
               </p>
             </div>
 
