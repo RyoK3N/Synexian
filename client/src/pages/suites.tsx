@@ -166,7 +166,7 @@ export default function Suites() {
             </Link>
             
             <Link href="/">
-              <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+              <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full transition-all duration-200 shadow-lg hover:scale-105">
                 <Home className="w-4 h-4" />
                 <span>Back to Home</span>
               </button>
@@ -215,8 +215,8 @@ export default function Suites() {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                   selectedCategory === category
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-600/25"
-                    : "bg-white/80 text-gray-700 hover:bg-white hover:shadow-md"
+                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-600/25"
+                    : "bg-white/80 text-gray-700 hover:bg-white hover:shadow-md border border-gray-200"
                 }`}
               >
                 {category}

@@ -72,7 +72,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-accent/5 to-primary-gradient/5 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -85,19 +85,19 @@ export default function AdminLogin() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="mx-auto w-16 h-16 bg-gradient-to-r from-primary-light to-accent rounded-xl flex items-center justify-center"
+              className="mx-auto w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
             >
               <Zap className="w-8 h-8 text-white" />
             </motion.div>
             
             <div>
-              <CardTitle className="text-2xl font-bold text-primary">Admin Access</CardTitle>
-              <CardDescription className="text-neutral">
+              <CardTitle className="text-2xl font-bold text-gray-900">Admin Access</CardTitle>
+              <CardDescription className="text-gray-600">
                 Secure access to Synexian Labs dashboard
               </CardDescription>
             </div>
 
-            <div className="flex items-center justify-center space-x-2 text-sm text-trust-blue bg-trust-blue/5 px-4 py-2 rounded-lg border border-trust-blue/20">
+            <div className="flex items-center justify-center space-x-2 text-sm text-blue-700 bg-blue-50 px-4 py-2 rounded-lg border border-blue-200">
               <Shield className="w-4 h-4" />
               <span>256-bit encryption enabled</span>
             </div>
@@ -119,7 +119,7 @@ export default function AdminLogin() {
                 <Input
                   id="username"
                   {...form.register("username")}
-                  className="focus:ring-trust-blue focus:border-trust-blue"
+                  className="focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your username"
                 />
                 {form.formState.errors.username && (
@@ -139,7 +139,7 @@ export default function AdminLogin() {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     {...form.register("password")}
-                    className="focus:ring-trust-blue focus:border-trust-blue pr-10"
+                    className="focus:ring-blue-500 focus:border-blue-500 pr-10"
                     placeholder="Enter your password"
                   />
                   <Button
@@ -167,18 +167,18 @@ export default function AdminLogin() {
                 <Input
                   id="twoFactor"
                   {...form.register("twoFactor")}
-                  className="focus:ring-trust-blue focus:border-trust-blue"
+                  className="focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter 6-digit code (use 123456 for demo)"
                   maxLength={6}
                 />
-                <p className="text-xs text-neutral">
+                <p className="text-xs text-gray-600">
                   For demo purposes, use code: 123456
                 </p>
               </div>
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-trust-blue to-primary hover:scale-105 transition-all duration-200"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white hover:scale-105 transition-all duration-200 shadow-lg"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -196,7 +196,7 @@ export default function AdminLogin() {
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-xs text-neutral">
+              <p className="text-xs text-gray-600">
                 Demo credentials: admin / admin123!@#
               </p>
             </div>
@@ -205,9 +205,9 @@ export default function AdminLogin() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="mt-4 p-4 bg-gradient-to-r from-primary/5 to-accent/5 rounded-lg border border-accent-secondary/20"
+              className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200"
             >
-              <div className="flex items-center justify-center space-x-2 text-sm text-primary">
+              <div className="flex items-center justify-center space-x-2 text-sm text-blue-700">
                 <Shield className="w-4 h-4" />
                 <span>Protected by enterprise-grade security</span>
               </div>

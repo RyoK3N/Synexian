@@ -76,7 +76,7 @@ export function Hero() {
               <Button
                 onClick={scrollToContact}
                 size="lg"
-                className="cta-gradient hover:scale-105 transition-all duration-200 text-lg px-8 py-4 focus-ring group"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white hover:scale-105 transition-all duration-200 text-lg px-8 py-4 shadow-lg group"
               >
                 Get Started Today
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -86,7 +86,7 @@ export function Hero() {
                 onClick={openCalendlyPopup}
                 variant="outline"
                 size="lg"
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 text-lg px-8 py-4 focus-ring group"
+                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-200 text-lg px-8 py-4 shadow-sm group"
               >
                 <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform" />
                 Watch Demo

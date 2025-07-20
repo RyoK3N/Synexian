@@ -115,7 +115,7 @@ export function Services() {
                   <Button
                     onClick={scrollToContact}
                     variant="outline"
-                    className="w-full group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-200"
+                    className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-200 group"
                   >
                     Learn More
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -145,7 +145,7 @@ export function Services() {
             <Button
               onClick={scrollToContact}
               size="lg"
-              className="cta-gradient hover:scale-105 transition-all duration-200 px-8 py-3"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white hover:scale-105 transition-all duration-200 px-8 py-3 shadow-lg"
             >
               Schedule Consultation
               <ArrowRight className="ml-2 w-5 h-5" />

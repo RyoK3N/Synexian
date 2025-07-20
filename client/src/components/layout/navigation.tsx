@@ -115,7 +115,7 @@ export function Navigation() {
               </button>
               <Button
                 onClick={openCalendlyPopup}
-                className="cta-gradient hover:scale-105 transition-all duration-200 focus-ring"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white hover:scale-105 transition-all duration-200 shadow-lg"
               >
                 Book a Call
               </Button>
