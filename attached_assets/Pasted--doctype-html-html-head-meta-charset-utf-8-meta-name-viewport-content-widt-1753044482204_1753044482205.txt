@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Synexian</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  </head>
+
+  <body>
+    <main>
+      <nav>
+        <div class="nav-inner">
+          <div class="left">
+            <div class="logo"></div>
+          </div>
+
+          <div class="progress-line"></div>
+
+          <div class="right">
+            <div class="dropdown">
+              <a href="" class="dropdown-toggle">Services</a>
+              <div class="dropdown-menu">
+                <a href="">AI and Automation</a>
+                <a href="">MLOps</a>
+              </div>
+            </div>
+
+            <div class="dropdown">
+              <a href="" class="dropdown-toggle">Results</a>
+              <div class="dropdown-menu">
+                <a href="">Testimonials</a>
+                <a href="">Case Study</a>
+              </div>
+            </div>
+
+            <a href="">About Us</a>
+
+            <div class="dropdown">
+              <a href="" class="dropdown-toggle">Resources</a>
+              <div class="dropdown-menu">
+                <a href="">Blogs</a>
+              </div>
+            </div>
+            <button class="cta" onclick="openCalendlyPopup()">Book a Call</button>
+          </div>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div class="header-container">
+          <h1>Transform your company with our ultimate software solutions services.</h1>
+
+          <h4>
+            Experience the power of our cutting-edge product that will
+            revolutionize your company's operations. Try it today!
+          </h4>
+        </div>
+
+        <div class="buttons">
+          <button>Watch Demo</button>
+
+          <button class="cta">Start Today</button>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <h2>Powerful Features for Modern Businesses</h2>
+
+        <div class="grid">
+          <div class="tile large">
+            <div class="text">
+              <h3>AI-Powered Analytics</h3>
+
+              <p>
+                Transform raw data into actionable insights with our advanced AI
+                engine. Get real-time predictions, trend analysis, and automated
+                reporting that helps you make informed decisions faster than
+                ever before.
+              </p>
+            </div>
+
+            <div class="media"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="tile small">
+            <div class="text">
+              <h3>Seamless Integration</h3>
+
+              <p>
+                Connect with over 1000+ popular tools and services. Our platform
+                integrates effortlessly with your existing workflow, ensuring
+                zero disruption to your current operations.
+              </p>
+            </div>
+
+            <div class="media"></div>
+          </div>
+          <div class="tile small">
+            <div class="text">
+              <h3>Enterprise Security</h3>
+
+              <p>
+                Bank-grade encryption, SOC 2 compliance, and advanced threat
+                protection. Your data stays secure with our multi-layered
+                security architecture trusted by Fortune 500 companies.
+              </p>
+            </div>
+
+            <div class="media"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="call-to-action">
+        <div class="callout-container">
+          <div class="text">
+            <h2>Ready to accelerate your growth?</h2>
+            <p>
+              Join thousands of companies already using our platform to
+              streamline operations, increase productivity, and drive
+              innovation. Start your free trial today and see the difference in
+              just 24 hours.
+            </p>
+          </div>
+
+          <div class="buttons">
+            <button>Schedule Demo</button>
+
+            <button class="cta">Start Free Trial</button>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="inner">
+          <div class="column">
+            <div class="logo"></div>
+
+            <a href="">Twitter</a>
+
+            <a href="">TikTok</a>
+
+            <a href="">YouTube</a>
+
+            <a href="">Facebook</a>
+          </div>
+
+          <div class="column">
+            <p>Features</p>
+
+            <a href="">Connections</a>
+
+            <a href="">Integrations</a>
+
+            <a href="">Relationships</a>
+
+            <a href="">Associations</a>
+          </div>
+
+          <div class="column">
+            <p>Handy links</p>
+
+            <a href="">Pricing</a>
+
+            <a href="">Documentation</a>
+
+            <a href="">About</a>
+
+            <a href="">Forum</a>
+
+            <a href="">Status</a>
+
+            <a href="">Brand kit</a>
+          </div>
+
+          <div class="column">
+            <p>Legal</p>
+
+            <a href="">Privacy Policy</a>
+
+            <a href="">Terms and Conditions</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Calendly Popup Modal -->
+    <div id="calendly-popup" class="calendly-popup-overlay" onclick="closeCalendlyPopup()">
+      <div class="calendly-popup-content" onclick="event.stopPropagation()">
+        <button class="calendly-close-btn" onclick="closeCalendlyPopup()">&times;</button>
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/reiyo1113/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=74d7e3" style="min-width:320px;height:700px;"></div>
+        <!-- Calendly inline widget end -->
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
