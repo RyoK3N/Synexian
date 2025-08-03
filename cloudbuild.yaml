@@ -1,67 +1,54 @@
 # Google Cloud Build configuration for Synexian Labs
-# This file defines the CI/CD pipeline for Google Cloud Platform
+# This file defines the CI/CD pipeline for Google Cloud Platform using custom Dockerfile
 
 steps:
-  # Build the Docker image
+  # Build the Docker image using our custom Dockerfile
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'build',
-      '-t', 'gcr.io/$PROJECT_ID/synexian-labs:$BUILD_ID',
-      '-t', 'gcr.io/$PROJECT_ID/synexian-labs:latest',
-      '--cache-from', 'gcr.io/$PROJECT_ID/synexian-labs:latest',
+      '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/synexian/synexian:$BUILD_ID',
+      '-t', 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/synexian/synexian:latest',
+      '--cache-from', 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/synexian/synexian:latest',
+      '-f', 'Dockerfile',
       '.'
     ]
 
-  # Push the image to Google Container Registry
+  # Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/synexian-labs:$BUILD_ID']
+    args: ['push', 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/synexian/synexian:$BUILD_ID']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/synexian-labs:latest']
+    args: ['push', 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/synexian/synexian:latest']
 
-  # Run database migrations (if needed)
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        if [ "$_ENVIRONMENT" = "production" ]; then
-          gcloud sql connect $_DB_INSTANCE --user=postgres --database=synexian --quiet < /dev/null
-        fi
-
-  # Deploy to Cloud Run
+  # Deploy to Cloud Run with proper configuration
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'run'
       - 'deploy'
-      - 'synexian-labs'
-      - '--image=gcr.io/$PROJECT_ID/synexian-labs:$BUILD_ID'
+      - 'synexian'
+      - '--image=asia-south1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/synexian/synexian:$BUILD_ID'
       - '--platform=managed'
       - '--region=$_REGION'
       - '--allow-unauthenticated'
-      - '--memory=1Gi'
-      - '--cpu=1'
+      - '--memory=2Gi'
+      - '--cpu=2'
       - '--concurrency=100'
       - '--max-instances=10'
-      - '--min-instances=1'
-      - '--set-env-vars=NODE_ENV=production,DATABASE_URL=$_DATABASE_URL,JWT_SECRET=$_JWT_SECRET,FRONTEND_URL=$_FRONTEND_URL'
-      - '--set-cloudsql-instances=$PROJECT_ID:$_REGION:$_DB_INSTANCE'
+      - '--min-instances=0'
+      - '--timeout=300'
+      - '--cpu-boost'
+      - '--set-env-vars=NODE_ENV=production,JWT_SECRET=$_JWT_SECRET,FRONTEND_URL=$_FRONTEND_URL'
 
 # Substitution variables (set these in Cloud Build trigger)
 substitutions:
-  _REGION: 'us-central1'
-  _ENVIRONMENT: 'production'
-  _DB_INSTANCE: 'synexian-db'
-  _DATABASE_URL: 'postgresql://synexian:${_DB_PASSWORD}@/${_DB_NAME}?host=/cloudsql/${PROJECT_ID}:${_REGION}:${_DB_INSTANCE}'
-  _JWT_SECRET: 'your-jwt-secret'
-  _FRONTEND_URL: 'https://synexian-labs-${PROJECT_ID}.uc.r.appspot.com'
-  _DB_PASSWORD: 'your-db-password'
-  _DB_NAME: 'synexian'
+  _REGION: 'asia-south1'
+  _JWT_SECRET: 'production-jwt-secret-change-me'
+  _FRONTEND_URL: 'https://synexian-favorable-bison-465412-r3.a.run.app'
 
-# Images to be stored in Container Registry
+# Images to be stored in Artifact Registry
 images:
-  - 'gcr.io/$PROJECT_ID/synexian-labs:$BUILD_ID'
-  - 'gcr.io/$PROJECT_ID/synexian-labs:latest'
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/synexian/synexian:$BUILD_ID'
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/synexian/synexian:latest'
 
 # Build options
 options:

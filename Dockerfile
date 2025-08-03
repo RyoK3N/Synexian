@@ -18,7 +18,7 @@ COPY components.json ./
 COPY drizzle.config.ts ./
 
 # Install all dependencies (including devDependencies for build)
-RUN npm ci
+RUN npm ci --only=production=false
 
 # Copy source code
 COPY client/ ./client/
@@ -78,5 +78,15 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 # Set production environment
 ENV NODE_ENV=production
 
-# Start the application
-CMD ["node", "dist/index.js"]
+# Add startup script for debugging
+RUN echo '#!/bin/sh' > /app/start.sh && \
+    echo 'echo "Starting Synexian Labs application..."' >> /app/start.sh && \
+    echo 'echo "NODE_ENV: $NODE_ENV"' >> /app/start.sh && \
+    echo 'echo "PORT: $PORT"' >> /app/start.sh && \
+    echo 'echo "Current directory: $(pwd)"' >> /app/start.sh && \
+    echo 'echo "Files in dist: $(ls -la dist/ 2>/dev/null || echo "dist directory not found")"' >> /app/start.sh && \
+    echo 'exec node dist/index.js' >> /app/start.sh && \
+    chmod +x /app/start.sh
+
+# Start the application with debugging
+CMD ["/app/start.sh"]
