@@ -44,7 +44,6 @@ steps:
       - '--concurrency=100'
       - '--max-instances=10'
       - '--min-instances=1'
-      - '--port=5000'
       - '--set-env-vars=NODE_ENV=production,DATABASE_URL=$_DATABASE_URL,JWT_SECRET=$_JWT_SECRET,FRONTEND_URL=$_FRONTEND_URL'
       - '--set-cloudsql-instances=$PROJECT_ID:$_REGION:$_DB_INSTANCE'
 

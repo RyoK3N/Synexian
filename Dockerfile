@@ -18,7 +18,7 @@ COPY components.json ./
 COPY drizzle.config.ts ./
 
 # Install all dependencies (including devDependencies for build)
-RUN npm ci --only=production=false
+RUN npm ci
 
 # Copy source code
 COPY client/ ./client/
@@ -60,13 +60,14 @@ RUN mkdir -p /app/logs && \
 # Switch to non-root user
 USER synexian
 
-# Expose port
-EXPOSE 5000
+# Expose port (will be set by Cloud Run, defaults to 8080)
+EXPOSE 8080
 
-# Add health check
+# Add health check (use dynamic port from environment)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD node -e "const http = require('http'); \
-                 const options = { host: 'localhost', port: 5000, path: '/api/health', timeout: 2000 }; \
+                 const port = process.env.PORT || 8080; \
+                 const options = { host: 'localhost', port: port, path: '/api/health', timeout: 2000 }; \
                  const req = http.request(options, (res) => { \
                    if (res.statusCode === 200) process.exit(0); \
                    else process.exit(1); \
@@ -76,7 +77,6 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 # Set production environment
 ENV NODE_ENV=production
-ENV PORT=5000
 
 # Start the application
 CMD ["node", "dist/index.js"]
