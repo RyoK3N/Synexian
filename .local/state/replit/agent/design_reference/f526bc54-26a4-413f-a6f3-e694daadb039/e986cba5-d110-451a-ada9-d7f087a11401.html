@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synexian Labs - Transform Your Business with AI & Automation</title>
+    <meta name="description" content="Professional AI and automation solutions for modern businesses. Transform your operations with cutting-edge technology.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#373465',
+                        'primary-light': '#6E76C1',
+                        'primary-gradient': '#9D7EFF',
+                        'accent': '#5BEEFF',
+                        'accent-secondary': '#BFBEE1',
+                        'cta-orange': '#FF6B35',
+                        'trust-blue': '#0066CC',
+                        'success': '#10B981',
+                        'neutral-light': '#F8FAFC',
+                        'neutral': '#64748B',
+                        'neutral-dark': '#1E293B'
+                    },
+                    fontFamily: {
+                        'sans': ['IBM Plex Sans', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out forwards',
+                        'fade-in': 'fadeIn 0.6s ease-out forwards'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</head>
+<body class="bg-neutral-light text-primary font-sans">
+    
+    <!-- Navigation -->
+    <!-- @COMPONENT: Navigation [sticky, responsive, glass morphism] -->
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-lg bg-neutral-light/95 border-b border-primary-gradient/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-gradient-to-r from-primary-light to-accent rounded-lg flex items-center justify-center">
+                        <i data-feather="zap" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-primary-light to-primary-gradient bg-clip-text text-transparent">Synexian Labs</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-primary hover:text-accent transition-colors duration-200">Home</a>
+                    <div class="relative group">
+                        <button class="text-primary hover:text-accent transition-colors duration-200 flex items-center">
+                            Services <i data-feather="chevron-down" class="w-4 h-4 ml-1 group-hover:rotate-180 transition-transform duration-200"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-56 bg-white border border-accent-secondary/20 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <div class="p-2">
+                                <a href="#ai-automation" class="block px-4 py-3 text-primary hover:bg-accent-secondary/10 rounded-lg transition-colors">AI & Automation</a>
+                                <a href="#mlops" class="block px-4 py-3 text-primary hover:bg-accent-secondary/10 rounded-lg transition-colors">MLOps</a>
+                                <a href="#consulting" class="block px-4 py-3 text-primary hover:bg-accent-secondary/10 rounded-lg transition-colors">Consulting</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#about" class="text-primary hover:text-accent transition-colors duration-200">About</a>
+                    <a href="#contact" class="text-primary hover:text-accent transition-colors duration-200">Contact</a>
+                    <button onclick="openAdminModal()" class="text-neutral hover:text-accent transition-colors duration-200">Admin</button>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <button onclick="openCalendlyPopup()" class="bg-gradient-to-r from-cta-orange to-accent text-white px-6 py-2 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-200">
+                        Book a Call
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <i data-feather="menu" class="w-6 h-6 text-primary"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-accent-secondary/20">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#home" class="block text-primary hover:text-accent transition-colors">Home</a>
+                <a href="#services" class="block text-primary hover:text-accent transition-colors">Services</a>
+                <a href="#about" class="block text-primary hover:text-accent transition-colors">About</a>
+                <a href="#contact" class="block text-primary hover:text-accent transition-colors">Contact</a>
+                <button onclick="openCalendlyPopup()" class="w-full bg-gradient-to-r from-cta-orange to-accent text-white px-6 py-3 rounded-lg font-semibold">
+                    Book a Call
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- Hero Section -->
+    <!-- @COMPONENT: HeroSection [gradient background, animated elements] -->
+    <section id="home" class="pt-24 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-primary-gradient/5"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="bg-gradient-to-r from-primary-light to-primary-gradient bg-clip-text text-transparent">Transform</span> your business with 
+                        <span class="bg-gradient-to-r from-accent to-primary-gradient bg-clip-text text-transparent">AI & Automation</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-neutral mb-8 max-w-2xl">
+                        Experience the power of cutting-edge AI solutions that revolutionize operations, boost productivity, and drive unprecedented growth for modern businesses.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button onclick="scrollToSection('contact')" class="bg-gradient-to-r from-cta-orange to-accent text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-200">
+                            Get Started Today
+                        </button>
+                        <button onclick="openCalendlyPopup()" class="border border-primary text-primary px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary hover:text-white transition-all duration-200">
+                            Watch Demo
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <!-- Modern tech office environment visualization -->
+                    <div class="relative z-10">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Modern tech office with collaborative workspace" class="rounded-2xl shadow-2xl w-full h-auto" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent rounded-2xl"></div>
+                    </div>
+                    <!-- Floating elements -->
+                    <div class="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-r from-accent to-primary-gradient rounded-full opacity-20 animate-float"></div>
+                    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-r from-cta-orange to-accent rounded-full opacity-30 animate-float" style="animation-delay: -2s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HeroSection -->
+
+    <!-- Services Section -->
+    <!-- @COMPONENT: ServicesSection [card grid, hover animations] -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                    <span class="bg-gradient-to-r from-primary-light to-primary-gradient bg-clip-text text-transparent">Powerful Solutions</span> for Modern Business
+                </h2>
+                <p class="text-lg text-neutral max-w-3xl mx-auto">
+                    Comprehensive AI and automation services designed to streamline operations, enhance productivity, and drive innovation across your organization.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- AI & Automation Service -->
+                <div class="group bg-gradient-to-br from-neutral-light to-white p-8 rounded-2xl border border-accent-secondary/20 hover:border-accent/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary-light to-accent rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-feather="cpu" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">AI & Automation</h3>
+                    <p class="text-neutral mb-6">Transform workflows with intelligent automation, machine learning models, and AI-powered decision making systems.</p>
+                    <ul class="space-y-2 text-sm text-neutral">
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-success mr-2"></i>Process Automation</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-success mr-2"></i>Predictive Analytics</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-success mr-2"></i>Custom AI Models</li>
+                    </ul>
+                </div>
+
+                <!-- MLOps Service -->
+                <div class="group bg-gradient-to-br from-neutral-light to-white p-8 rounded-2xl border border-accent-secondary/20 hover:border-accent/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent to-primary-gradient rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-feather="settings" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">MLOps</h3>
+                    <p class="text-neutral mb-6">Streamline machine learning operations with robust pipelines, monitoring, and deployment solutions.</p>
+                    <ul class="space-y-2 text-sm text-neutral">
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-success mr-2"></i>Model Deployment</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-success mr-2"></i>Performance Monitoring</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-success mr-2"></i>CI/CD Pipelines</li>
+                    </ul>
+                </div>
+
+                <!-- Consulting Service -->
+                <div class="group bg-gradient-to-br from-neutral-light to-white p-8 rounded-2xl border border-accent-secondary/20 hover:border-accent/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 md:col-span-2 lg:col-span-1">
+                    <div class="w-16 h-16 bg-gradient-to-r from-cta-orange to-accent rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-feather="users" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">Strategic Consulting</h3>
+                    <p class="text-neutral mb-6">Expert guidance on digital transformation, technology strategy, and implementation roadmaps.</p>
+                    <ul class="space-y-2 text-sm text-neutral">
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-success mr-2"></i>Digital Strategy</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-success mr-2"></i>Technology Assessment</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-success mr-2"></i>Implementation Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ServicesSection -->
+
+    <!-- Features Section -->
+    <!-- @COMPONENT: FeaturesSection [alternating layout, images] -->
+    <section class="py-20 bg-neutral-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Feature 1: AI-Powered Analytics -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                <div>
+                    <h3 class="text-3xl font-bold mb-6 text-primary">AI-Powered Analytics</h3>
+                    <p class="text-lg text-neutral mb-8">
+                        Transform raw data into actionable insights with our advanced AI engine. Get real-time predictions, trend analysis, and automated reporting that helps you make informed decisions faster than ever before.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="trending-up" class="w-6 h-6 text-success mr-3 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-primary">Predictive Insights</h4>
+                                <p class="text-neutral">Forecast trends and outcomes with 95% accuracy</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="zap" class="w-6 h-6 text-accent mr-3 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-primary">Real-time Processing</h4>
+                                <p class="text-neutral">Instant analysis of streaming data sources</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <!-- Business professionals working with technology -->
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Business professionals analyzing data on multiple screens" class="rounded-2xl shadow-xl w-full h-auto" />
+                </div>
+            </div>
+
+            <!-- Feature 2: Enterprise Security -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-2 lg:order-1">
+                    <!-- Professional team collaboration -->
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Professional team collaborating on secure technology solutions" class="rounded-2xl shadow-xl w-full h-auto" />
+                </div>
+                <div class="order-1 lg:order-2">
+                    <h3 class="text-3xl font-bold mb-6 text-primary">Enterprise Security</h3>
+                    <p class="text-lg text-neutral mb-8">
+                        Bank-grade encryption, SOC 2 compliance, and advanced threat protection. Your data stays secure with our multi-layered security architecture trusted by Fortune 500 companies.
+                    </p>
+                    <div class="flex items-center space-x-8">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-trust-blue">256-bit</div>
+                            <div class="text-sm text-neutral">Encryption</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-trust-blue">SOC 2</div>
+                            <div class="text-sm text-neutral">Compliant</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-trust-blue">24/7</div>
+                            <div class="text-sm text-neutral">Monitoring</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3: Seamless Integration -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-3xl font-bold mb-6 text-primary">Seamless Integration</h3>
+                    <p class="text-lg text-neutral mb-8">
+                        Connect with 1000+ popular tools and services. Our platform integrates effortlessly with your existing workflow, ensuring zero disruption to your current operations.
+                    </p>
+                    <div class="grid grid-cols-4 gap-4">
+                        <div class="w-12 h-12 bg-white rounded-lg border border-accent-secondary/20 flex items-center justify-center">
+                            <i data-feather="slack" class="w-6 h-6 text-neutral"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-white rounded-lg border border-accent-secondary/20 flex items-center justify-center">
+                            <i data-feather="github" class="w-6 h-6 text-neutral"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-white rounded-lg border border-accent-secondary/20 flex items-center justify-center">
+                            <i data-feather="mail" class="w-6 h-6 text-neutral"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-white rounded-lg border border-accent-secondary/20 flex items-center justify-center text-sm font-bold text-neutral">
+                            +1K
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <!-- Automation and AI visualization -->
+                    <img src="https://images.unsplash.com/photo-1518186233392-c232efbf2373?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Advanced automation and AI visualization dashboard" class="rounded-2xl shadow-xl w-full h-auto" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: FeaturesSection -->
+
+    <!-- About Section -->
+    <!-- @COMPONENT: AboutSection [team, company info] -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-primary">About Synexian Labs</h2>
+                <p class="text-lg text-neutral max-w-3xl mx-auto">
+                    Founded by industry experts with decades of experience in AI, automation, and enterprise technology solutions.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-primary">Our Mission</h3>
+                    <p class="text-neutral mb-6">
+                        We empower businesses to harness the full potential of artificial intelligence and automation technologies. Our team of experts works closely with organizations to identify opportunities, implement solutions, and drive measurable results.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-accent mb-2">50+</div>
+                            <div class="text-sm text-neutral">Projects Delivered</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-accent mb-2">98%</div>
+                            <div class="text-sm text-neutral">Client Satisfaction</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-accent mb-2">24/7</div>
+                            <div class="text-sm text-neutral">Support Available</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-accent mb-2">5+</div>
+                            <div class="text-sm text-neutral">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <!-- Professional team collaboration -->
+                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Professional team discussing technology solutions in modern office" class="rounded-2xl shadow-xl w-full h-auto" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: AboutSection -->
+
+    <!-- Contact Section -->
+    <!-- @COMPONENT: ContactSection [form, contact info] -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-primary/5 via-accent/5 to-primary-gradient/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-primary">Get In Touch</h2>
+                <p class="text-lg text-neutral max-w-3xl mx-auto">
+                    Ready to transform your business? Let's discuss how our AI and automation solutions can drive your success.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl border border-accent-secondary/20">
+                    <h3 class="text-2xl font-semibold mb-6 text-primary">Send us a message</h3>
+                    <form id="contactForm" data-implementation="Should validate and submit to backend">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-primary font-medium mb-2">First Name</label>
+                                <input type="text" name="firstName" required class="w-full px-4 py-3 rounded-lg border border-accent-secondary/30 focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-primary font-medium mb-2">Last Name</label>
+                                <input type="text" name="lastName" required class="w-full px-4 py-3 rounded-lg border border-accent-secondary/30 focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-primary font-medium mb-2">Email Address</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-accent-secondary/30 focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-primary font-medium mb-2">Company</label>
+                            <input type="text" name="company" class="w-full px-4 py-3 rounded-lg border border-accent-secondary/30 focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-primary font-medium mb-2">Message</label>
+                            <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-accent-secondary/30 focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-cta-orange to-accent text-white py-4 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition-all duration-200">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-accent-secondary/20">
+                        <h3 class="text-2xl font-semibold mb-6 text-primary">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary-light to-accent rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="mail" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-primary">Email</div>
+                                    <div class="text-neutral">hello@synexianlabs.com</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-accent to-primary-gradient rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="phone" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-primary">Phone</div>
+                                    <div class="text-neutral">+1 (555) 123-4567</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-cta-orange to-accent rounded-lg flex items-center justify-center mr-4">
+                                    <i data-feather="map-pin" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-primary">Location</div>
+                                    <div class="text-neutral">San Francisco, CA</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Card -->
+                    <div class="bg-gradient-to-br from-primary to-primary-gradient rounded-2xl p-8 text-white">
+                        <h3 class="text-2xl font-semibold mb-4">Schedule a Consultation</h3>
+                        <p class="mb-6 text-white/90">
+                            Book a free 30-minute consultation to discuss your business needs and explore how we can help.
+                        </p>
+                        <button onclick="openCalendlyPopup()" class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-accent-secondary/20 transition-all duration-200">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ContactSection -->
+
+    <!-- Footer -->
+    <!-- @COMPONENT: Footer [links, social media, legal] -->
+    <footer class="bg-neutral-dark text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Brand -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-8 h-8 bg-gradient-to-r from-primary-light to-accent rounded-lg flex items-center justify-center">
+                            <i data-feather="zap" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold">Synexian Labs</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        Transforming businesses through intelligent automation and AI-powered solutions. Your partner in digital transformation.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-primary-light/20 rounded-lg flex items-center justify-center hover:bg-accent transition-colors">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary-light/20 rounded-lg flex items-center justify-center hover:bg-accent transition-colors">
+                            <i data-feather="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary-light/20 rounded-lg flex items-center justify-center hover:bg-accent transition-colors">
+                            <i data-feather="github" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Services</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:text-accent transition-colors">AI & Automation</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">MLOps</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Strategic Consulting</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Integration Services</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Company</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#about" class="hover:text-accent transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="hover:text-accent transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-400 text-sm mb-4 md:mb-0">
+                    © 2025 Synexian Labs Private Limited. All rights reserved.
+                </div>
+                <div class="flex space-x-6 text-gray-400 text-sm">
+                    <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-accent transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <!-- Admin Login Modal -->
+    <!-- @COMPONENT: AdminModal [secure login, 2FA ready] -->
+    <div id="adminModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 w-full max-w-md mx-4 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-primary">Admin Access</h2>
+                <button onclick="closeAdminModal()" class="text-neutral hover:text-primary">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <form id="adminLoginForm" data-implementation="Should use bcrypt, JWT, 2FA">
+                <div class="mb-4">
+                    <label class="block text-primary font-medium mb-2">
+                        <i data-feather="user" class="w-4 h-4 inline mr-2"></i>Username
+                    </label>
+                    <input type="text" name="username" required class="w-full px-4 py-3 rounded-lg border border-trust-blue/30 focus:border-trust-blue focus:ring-2 focus:ring-trust-blue/20 transition-all">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-primary font-medium mb-2">
+                        <i data-feather="lock" class="w-4 h-4 inline mr-2"></i>Password
+                    </label>
+                    <input type="password" name="password" required class="w-full px-4 py-3 rounded-lg border border-trust-blue/30 focus:border-trust-blue focus:ring-2 focus:ring-trust-blue/20 transition-all">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-primary font-medium mb-2">
+                        <i data-feather="shield" class="w-4 h-4 inline mr-2"></i>2FA Code
+                    </label>
+                    <input type="text" name="twoFactor" placeholder="Enter 6-digit code" class="w-full px-4 py-3 rounded-lg border border-trust-blue/30 focus:border-trust-blue focus:ring-2 focus:ring-trust-blue/20 transition-all">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-trust-blue to-primary text-white py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-200">
+                    <i data-feather="log-in" class="w-4 h-4 inline mr-2"></i>Secure Login
+                </button>
+            </form>
+            
+            <div class="mt-4 p-4 bg-trust-blue/5 rounded-lg border border-trust-blue/20">
+                <div class="flex items-center text-trust-blue text-sm">
+                    <i data-feather="shield-check" class="w-4 h-4 mr-2"></i>
+                    Secured with 256-bit encryption
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: AdminModal -->
+
+    <!-- Analytics Dashboard Preview -->
+    <!-- @COMPONENT: AnalyticsDashboard [charts, metrics, admin only] -->
+    <div id="analyticsDashboard" class="fixed inset-0 bg-neutral-light z-40 hidden overflow-y-auto">
+        <div class="min-h-screen">
+            <!-- Dashboard Header -->
+            <div class="bg-white border-b border-accent-secondary/20 p-6">
+                <div class="max-w-7xl mx-auto flex justify-between items-center">
+                    <h1 class="text-2xl font-bold text-primary">Analytics Dashboard</h1>
+                    <button onclick="closeAnalytics()" class="bg-neutral text-white px-4 py-2 rounded-lg hover:bg-primary transition-colors">
+                        <i data-feather="x" class="w-4 h-4 inline mr-2"></i>Close
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Dashboard Content -->
+            <div class="max-w-7xl mx-auto p-6">
+                <!-- Metrics Cards -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-accent-secondary/20">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-neutral text-sm">Total Visitors</p>
+                                <p class="text-2xl font-bold text-primary" data-bind="analytics.visitors">12,453</p>
+                            </div>
+                            <div class="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                                <i data-feather="users" class="w-6 h-6 text-success"></i>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-sm text-success">+12% from last month</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-accent-secondary/20">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-neutral text-sm">Conversions</p>
+                                <p class="text-2xl font-bold text-primary" data-bind="analytics.conversions">1,247</p>
+                            </div>
+                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                                <i data-feather="trending-up" class="w-6 h-6 text-accent"></i>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-sm text-success">+8% from last month</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-accent-secondary/20">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-neutral text-sm">Revenue</p>
+                                <p class="text-2xl font-bold text-primary" data-bind="analytics.revenue">$45,678</p>
+                            </div>
+                            <div class="w-12 h-12 bg-cta-orange/10 rounded-lg flex items-center justify-center">
+                                <i data-feather="dollar-sign" class="w-6 h-6 text-cta-orange"></i>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-sm text-success">+15% from last month</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-accent-secondary/20">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-neutral text-sm">Active Users</p>
+                                <p class="text-2xl font-bold text-primary" data-bind="analytics.activeUsers">3,421</p>
+                            </div>
+                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <i data-feather="activity" class="w-6 h-6 text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-sm text-success">+5% from last month</div>
+                    </div>
+                </div>
+                
+                <!-- Charts Section -->
+                <div class="grid lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-accent-secondary/20">
+                        <h3 class="text-lg font-semibold text-primary mb-4">Traffic Overview</h3>
+                        <div class="h-64 bg-gradient-to-b from-accent/10 to-transparent rounded-lg flex items-end justify-center">
+                            <!-- Placeholder for Chart.js implementation -->
+                            <div class="text-neutral text-sm"><!-- @FUNCTIONALITY: Implement Chart.js line chart for traffic data --></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-sm border border-accent-secondary/20">
+                        <h3 class="text-lg font-semibold text-primary mb-4">Conversion Rate</h3>
+                        <div class="h-64 bg-gradient-to-b from-success/10 to-transparent rounded-lg flex items-center justify-center">
+                            <!-- Placeholder for Chart.js implementation -->
+                            <div class="text-neutral text-sm"><!-- @FUNCTIONALITY: Implement Chart.js bar chart for conversion data --></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Activity Log -->
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-accent-secondary/20">
+                    <h3 class="text-lg font-semibold text-primary mb-4">Recent Activity</h3>
+                    <div class="space-y-4">
+                        <!-- @MAP: activityLog.map(activity => ( -->
+                        <div class="flex items-center space-x-4 p-4 bg-neutral-light/50 rounded-lg" data-mock="true">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                                <i data-feather="user" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-primary font-medium">New user registration</p>
+                                <p class="text-neutral text-sm">user@example.com - 2 minutes ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-neutral-light/50 rounded-lg" data-mock="true">
+                            <div class="w-8 h-8 bg-success rounded-full flex items-center justify-center">
+                                <i data-feather="shopping-cart" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-primary font-medium">Contact form submission</p>
+                                <p class="text-neutral text-sm">Business inquiry - 5 minutes ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-neutral-light/50 rounded-lg" data-mock="true">
+                            <div class="w-8 h-8 bg-cta-orange rounded-full flex items-center justify-center">
+                                <i data-feather="calendar" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-primary font-medium">Calendly booking</p>
+                                <p class="text-neutral text-sm">30-min consultation - 10 minutes ago</p>
+                            </div>
+                        </div>
+                        <!-- @END_MAP )) -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: AnalyticsDashboard -->
+
+    <!-- Calendly Modal -->
+    <!-- @COMPONENT: CalendlyModal [integration ready] -->
+    <div id="calendlyModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl">
+            <div class="flex justify-between items-center p-6 border-b border-accent-secondary/20">
+                <h2 class="text-2xl font-bold text-primary">Schedule a Consultation</h2>
+                <button onclick="closeCalendlyPopup()" class="text-neutral hover:text-primary">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="h-[600px]">
+                <!-- Calendly inline widget -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/synexianlabs/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=5BEEFF" style="min-width:320px;height:100%;"></div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: CalendlyModal -->
+
+    <!-- Toast Notification -->
+    <!-- @COMPONENT: ToastNotification [success, error states] -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-full transition-transform duration-300">
+        <div class="bg-white border border-accent-secondary/20 rounded-xl shadow-xl p-4 flex items-center space-x-3">
+            <div id="toastIcon" class="w-8 h-8 rounded-full flex items-center justify-center">
+                <i data-feather="check" class="w-4 h-4"></i>
+            </div>
+            <div id="toastMessage" class="text-primary font-medium">Message sent successfully!</div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: ToastNotification -->
+
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <script>
+        (() => {
+            // Initialize Feather Icons
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
+            
+            // Mobile Menu Toggle
+            window.toggleMobileMenu = function() {
+                const menu = document.getElementById('mobileMenu');
+                menu.classList.toggle('hidden');
+            };
+            
+            // Admin Modal Functions
+            window.openAdminModal = function() {
+                document.getElementById('adminModal').classList.remove('hidden');
+                document.getElementById('adminModal').classList.add('flex');
+            };
+            
+            window.closeAdminModal = function() {
+                document.getElementById('adminModal').classList.add('hidden');
+                document.getElementById('adminModal').classList.remove('flex');
+            };
+            
+            // Analytics Dashboard Functions
+            window.openAnalytics = function() {
+                document.getElementById('analyticsDashboard').classList.remove('hidden');
+            };
+            
+            window.closeAnalytics = function() {
+                document.getElementById('analyticsDashboard').classList.add('hidden');
+            };
+            
+            // Calendly Modal Functions
+            window.openCalendlyPopup = function() {
+                document.getElementById('calendlyModal').classList.remove('hidden');
+                document.getElementById('calendlyModal').classList.add('flex');
+            };
+            
+            window.closeCalendlyPopup = function() {
+                document.getElementById('calendlyModal').classList.add('hidden');
+                document.getElementById('calendlyModal').classList.remove('flex');
+            };
+            
+            // Toast Notification
+            window.showToast = function(message, type = 'success') {
+                const toast = document.getElementById('toast');
+                const icon = document.getElementById('toastIcon');
+                const messageEl = document.getElementById('toastMessage');
+                
+                messageEl.textContent = message;
+                
+                if (type === 'success') {
+                    icon.className = 'w-8 h-8 bg-green-100 rounded-full flex items-center justify-center';
+                    icon.innerHTML = '<i data-feather="check" class="w-4 h-4 text-green-600"></i>';
+                } else if (type === 'error') {
+                    icon.className = 'w-8 h-8 bg-red-100 rounded-full flex items-center justify-center';
+                    icon.innerHTML = '<i data-feather="x" class="w-4 h-4 text-red-600"></i>';
+                }
+                
+                toast.style.transform = 'translateY(0)';
+                feather.replace();
+                
+                setTimeout(() => {
+                    toast.style.transform = 'translateY(100%)';
+                }, 3000);
+            };
+            
+            // Smooth Scrolling
+            window.scrollToSection = function(sectionId) {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            };
+            
+            // Form Handling
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // TODO: Implement form validation and backend submission
+                showToast('Thank you! Your message has been sent successfully.');
+                this.reset();
+            });
+            
+            document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // TODO: Implement secure admin authentication with bcrypt, JWT, 2FA
+                const formData = new FormData(this);
+                const username = formData.get('username');
+                const password = formData.get('password');
+                const twoFactor = formData.get('twoFactor');
+                
+                // Mock authentication check
+                if (username === 'admin' && password === 'secure123' && twoFactor === '123456') {
+                    closeAdminModal();
+                    openAnalytics();
+                    showToast('Admin login successful!');
+                } else {
+                    showToast('Invalid credentials. Please check your login details.', 'error');
+                }
+            });
+            
+            // Scroll Animation Observer
+            const observeElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            observeElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Add scroll animation class to elements
+            document.querySelectorAll('section > div').forEach(el => {
+                el.classList.add('animate-on-scroll');
+            });
+            
+            // Close modals on outside click
+            document.addEventListener('click', function(e) {
+                const adminModal = document.getElementById('adminModal');
+                const calendlyModal = document.getElementById('calendlyModal');
+                
+                if (e.target === adminModal) {
+                    closeAdminModal();
+                }
+                if (e.target === calendlyModal) {
+                    closeCalendlyPopup();
+                }
+            });
+            
+            // Navigation active state
+            const sections = ['home', 'services', 'about', 'contact'];
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const element = document.getElementById(section);
+                    if (element) {
+                        const rect = element.getBoundingClientRect();
+                        if (rect.top <= 100 && rect.bottom >= 100) {
+                            current = section;
+                        }
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-accent');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('text-accent');
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

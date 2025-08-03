@@ -1,0 +1,124 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synexian-labs
+  labels:
+    app: synexian-labs
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: synexian-labs
+  template:
+    metadata:
+      labels:
+        app: synexian-labs
+        version: v1
+    spec:
+      containers:
+      - name: synexian-labs
+        image: gcr.io/PROJECT_ID/synexian-labs:latest
+        ports:
+        - containerPort: 5000
+          name: http
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "5000"
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: synexian-secrets
+              key: database_url
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: synexian-secrets
+              key: jwt_secret
+        - name: FRONTEND_URL
+          valueFrom:
+            configMapKeyRef:
+              name: synexian-config
+              key: frontend_url
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1001
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+      imagePullSecrets:
+      - name: gcr-json-key
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: synexian-labs-service
+  labels:
+    app: synexian-labs
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 5000
+    protocol: TCP
+    name: http
+  selector:
+    app: synexian-labs
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: synexian-labs-ingress
+  annotations:
+    kubernetes.io/ingress.class: gce
+    kubernetes.io/ingress.global-static-ip-name: synexian-labs-ip
+    networking.gke.io/managed-certificates: synexian-labs-ssl-cert
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  rules:
+  - host: your-domain.com
+    http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: synexian-labs-service
+            port:
+              number: 80
+
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: synexian-labs-ssl-cert
+spec:
+  domains:
+    - your-domain.com
+    - www.your-domain.com

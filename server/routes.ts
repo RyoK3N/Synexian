@@ -120,7 +120,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const initializeAdminUser = async () => {
     try {
       const existingAdmin = await storage.getUserByUsername('admin');
-      const hashedPassword = await bcrypt.hash('Agent0#Synexianlabs@0630', SALT_ROUNDS);
+      const hashedPassword = await bcrypt.hash('admin123', SALT_ROUNDS);
       
       if (!existingAdmin) {
         await storage.createUser({
@@ -129,11 +129,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
           password: hashedPassword,
           role: 'admin',
         });
-        console.log('Default admin user created with new secure password');
+        console.log('Default admin user created with password: admin123');
       } else {
-        // Update existing admin password to new secure password
+        // Update existing admin password
         await storage.updateUserPassword('admin', hashedPassword);
-        console.log('Admin password updated to new secure password');
+        console.log('Admin password updated to: admin123');
       }
     } catch (error) {
       console.error('Failed to initialize admin user:', error);
@@ -141,6 +141,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
   };
 
   await initializeAdminUser();
+
+  // Health check endpoint for monitoring and load balancers
+  app.get('/api/health', async (req, res) => {
+    try {
+      // Check database connection
+      await storage.getDashboardStats();
+      
+      const healthCheck = {
+        status: 'healthy',
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime(),
+        environment: process.env.NODE_ENV || 'development',
+        version: process.env.APP_VERSION || '1.0.0',
+        database: 'connected',
+        memory: {
+          used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024 * 100) / 100,
+          total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100,
+        }
+      };
+      
+      res.status(200).json(healthCheck);
+    } catch (error) {
+      console.error('Health check failed:', error);
+      res.status(503).json({
+        status: 'unhealthy',
+        timestamp: new Date().toISOString(),
+        error: 'Database connection failed'
+      });
+    }
+  });
 
   // Contact form submission
   app.post('/api/contact', contactLimiter, async (req, res) => {

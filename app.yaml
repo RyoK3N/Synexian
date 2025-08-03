@@ -1,0 +1,51 @@
+# Google App Engine configuration for Synexian Labs
+# Alternative to Cloud Run deployment
+
+runtime: nodejs18
+
+# Instance configuration
+instance_class: F2
+automatic_scaling:
+  min_instances: 1
+  max_instances: 10
+  target_cpu_utilization: 0.6
+
+# Environment variables
+env_variables:
+  NODE_ENV: production
+  PORT: 8080
+  JWT_SECRET: your-jwt-secret-change-in-production
+  FRONTEND_URL: https://your-project-id.uc.r.appspot.com
+
+# VPC connector for private database access
+vpc_access_connector:
+  name: projects/your-project-id/locations/us-central1/connectors/synexian-connector
+
+# Health check configuration
+readiness_check:
+  path: "/api/health"
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+
+liveness_check:
+  path: "/api/health"
+  check_interval_sec: 30
+  timeout_sec: 4
+  failure_threshold: 4
+  success_threshold: 2
+
+# Network settings
+network:
+  session_affinity: true
+
+# Handlers for static assets
+handlers:
+- url: /assets
+  static_dir: dist/public/assets
+  secure: always
+
+- url: /.*
+  script: auto
+  secure: always

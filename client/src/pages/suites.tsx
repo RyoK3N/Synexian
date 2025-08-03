@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "wouter";
-import { 
-  Zap, 
-  ArrowRight, 
-  ExternalLink, 
-  Code, 
-  Layers, 
-  Smartphone, 
-  Briefcase, 
+import {
+  Zap,
+  ArrowRight,
+  ExternalLink,
+  Code,
+  Layers,
+  Smartphone,
+  Briefcase,
   TrendingUp,
   Shield,
   Globe,
@@ -17,7 +17,7 @@ import {
   MessageSquare,
   Calendar,
   CreditCard,
-  Home
+  Home,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -27,85 +27,140 @@ import { Badge } from "@/components/ui/badge";
 const suites = [
   {
     id: 1,
-    title: "SmartFlow Analytics",
-    description: "Advanced business intelligence platform with real-time data visualization and predictive analytics.",
-    category: "Analytics",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center",
-    tags: ["Analytics", "BI", "Real-time"],
-    features: ["Real-time dashboards", "Predictive modeling", "Custom reports"],
+    title: "Agent Teams",
+    description:
+      "A cloud‑native platform where seven expert AI agents handle analysis, design, coding, testing, and documentation—autonomously delivering end‑to‑end software with unmatched speed and consistency.",
+    category: "AI/ML",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center",
+    tags: [
+      "Coding",
+      "AI Automation",
+      "Collaboration",
+      "DevOps",
+      "Testing",
+      "Documentation",
+    ],
+    features: [
+      "Automated multi‑agent orchestration with clear task logging",
+      "Real‑time collaborative code generation and review",
+      "Interactive agent logs and progress dashboard",
+
+    ],
     status: "Live",
     url: "https://analytics.synexianlabs.com",
     icon: PieChart,
-    color: "from-blue-600 to-indigo-600"
+    color: "from-blue-600 to-indigo-600",
   },
   {
     id: 2,
-    title: "AutoCRM Pro",
-    description: "AI-powered customer relationship management system that automates lead scoring and follow-ups.",
-    category: "CRM",
-    image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=400&fit=crop&crop=center",
-    tags: ["CRM", "AI", "Automation"],
-    features: ["AI lead scoring", "Automated workflows", "360° customer view"],
+    title: "NeuroDesigner",
+    description:
+      "A visual neural‑network design tool that replaces hundreds of lines of TensorFlow code with simple drag‑and‑drop actions and exports production‑ready TF code in seconds.",
+    category: "AI/ML",
+    image:
+      "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=400&fit=crop&crop=center",
+    tags: [
+      "Drag-and-Drop",
+      "TensorFlow",
+      "Model Visualization",
+      "Collaboration",
+      "Code Export",
+    ],
+    features: [
+      "Intuitive drag‑and‑drop interface for building neural-network architectures",
+      "Instant export of production‑ready TensorFlow code",
+      "Library of pre‑configured layers and operations for rapid prototyping",
+      "Interactive tutorials and sample projects for guided learning",
+    ],
     status: "Live",
-    url: "https://crm.synexianlabs.com",
+    url: "https://tf-model-diagram.com/",
     icon: Users,
-    color: "from-green-600 to-emerald-600"
+    color: "from-green-600 to-emerald-600",
   },
   {
     id: 3,
     title: "SecureVault",
-    description: "Enterprise-grade security platform with zero-trust architecture and compliance automation.",
+    description:
+      "Enterprise-grade security platform with zero-trust architecture and compliance automation.",
     category: "Security",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop&crop=center",
     tags: ["Security", "Compliance", "Zero-trust"],
-    features: ["Zero-trust security", "Compliance automation", "Threat detection"],
+    features: [
+      "Zero-trust security",
+      "Compliance automation",
+      "Threat detection",
+    ],
     status: "Beta",
     url: "https://security.synexianlabs.com",
     icon: Shield,
-    color: "from-red-600 to-rose-600"
+    color: "from-red-600 to-rose-600",
   },
   {
     id: 4,
     title: "CloudScale",
-    description: "Multi-cloud management platform that optimizes costs and performance across providers.",
+    description:
+      "Multi-cloud management platform that optimizes costs and performance across providers.",
     category: "Cloud",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop&crop=center",
     tags: ["Cloud", "Multi-cloud", "Cost optimization"],
-    features: ["Multi-cloud support", "Cost optimization", "Performance monitoring"],
+    features: [
+      "Multi-cloud support",
+      "Cost optimization",
+      "Performance monitoring",
+    ],
     status: "Coming Soon",
     url: "#",
     icon: Globe,
-    color: "from-purple-600 to-violet-600"
+    color: "from-purple-600 to-violet-600",
   },
   {
     id: 5,
-    title: "ChatBot Studio",
-    description: "No-code conversational AI platform for building sophisticated chatbots and virtual assistants.",
+    title: "Agent Simulation Platform",
+    description:
+      "Agent Simulation Platform presents a dynamic environment where AI-driven personas interact in simulations, providing audio feedback via advanced Deepgram TTS.",
     category: "AI/ML",
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop&crop=center",
-    tags: ["AI", "Chatbot", "No-code"],
-    features: ["No-code builder", "Multi-channel deployment", "Advanced NLP"],
+    image:
+      "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop&crop=center",
+    tags: ["AI", "Simulation", "TTS", "Interactive"],
+    features: [
+      "Dynamic AI-driven persona interactions",
+      "Advanced Deepgram Text-to-Speech feedback",
+      "Simulation feedback to enhance persona development",
+    ],
     status: "Live",
-    url: "https://chatbot.synexianlabs.com",
+    url: "https://agent-simulation.replit.app/",
     icon: MessageSquare,
-    color: "from-orange-600 to-amber-600"
+    color: "from-orange-600 to-amber-600",
   },
   {
     id: 6,
     title: "EconoMetrics",
-    description: "Financial planning and analysis platform with advanced forecasting and budget management.",
+    description:
+      "Financial planning and analysis platform with advanced forecasting and budget management.",
     category: "Finance",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop&crop=center",
     tags: ["Finance", "Forecasting", "Budgeting"],
     features: ["Financial forecasting", "Budget tracking", "ROI analysis"],
     status: "Live",
     url: "https://finance.synexianlabs.com",
     icon: TrendingUp,
-    color: "from-teal-600 to-cyan-600"
-  }
+    color: "from-teal-600 to-cyan-600",
+  },
 ];
 
-const categories = ["All", "Analytics", "CRM", "Security", "Cloud", "AI/ML", "Finance"];
+const categories = [
+  "All",
+  "Analytics",
+  "CRM",
+  "Security",
+  "Cloud",
+  "AI/ML",
+  "Finance",
+];
 
 export default function Suites() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -129,16 +184,21 @@ export default function Suites() {
     trackPageView();
   }, []);
 
-  const filteredSuites = selectedCategory === "All" 
-    ? suites 
-    : suites.filter(suite => suite.category === selectedCategory);
+  const filteredSuites =
+    selectedCategory === "All"
+      ? suites
+      : suites.filter((suite) => suite.category === selectedCategory);
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "Live": return "bg-green-100 text-green-800";
-      case "Beta": return "bg-yellow-100 text-yellow-800";
-      case "Coming Soon": return "bg-gray-100 text-gray-800";
-      default: return "bg-blue-100 text-blue-800";
+      case "Live":
+        return "bg-green-100 text-green-800";
+      case "Beta":
+        return "bg-yellow-100 text-yellow-800";
+      case "Coming Soon":
+        return "bg-gray-100 text-gray-800";
+      default:
+        return "bg-blue-100 text-blue-800";
     }
   };
 
@@ -164,7 +224,7 @@ export default function Suites() {
                 </span>
               </div>
             </Link>
-            
+
             <Link href="/">
               <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full transition-all duration-200 shadow-lg hover:scale-105">
                 <Home className="w-4 h-4" />
@@ -186,16 +246,19 @@ export default function Suites() {
           >
             <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-md rounded-full px-4 py-2 border border-blue-200/50 mb-6">
               <Layers className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-blue-900">Product Suites</span>
+              <span className="text-sm font-medium text-blue-900">
+                Product Suites
+              </span>
             </div>
-            
+
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-900 via-purple-600 to-blue-900 bg-clip-text text-transparent">
               Synexian Suites
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-              Explore our comprehensive collection of AI-powered business solutions,
-              each designed to revolutionize how you work and scale your operations.
+              Explore our comprehensive collection of AI-powered business
+              solutions, each designed to revolutionize how you work and scale
+              your operations.
             </p>
           </motion.div>
 
@@ -256,8 +319,10 @@ export default function Suites() {
                         alt={suite.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className={`absolute inset-0 bg-gradient-to-t ${suite.color} opacity-80`} />
-                      
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-t ${suite.color} opacity-80`}
+                      />
+
                       {/* Status Badge */}
                       <div className="absolute top-4 left-4">
                         <Badge className={getStatusColor(suite.status)}>
@@ -313,7 +378,10 @@ export default function Suites() {
                       {/* Features */}
                       <div className="space-y-2">
                         {suite.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center text-sm text-gray-600">
+                          <div
+                            key={idx}
+                            className="flex items-center text-sm text-gray-600"
+                          >
                             <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3 flex-shrink-0" />
                             <span>{feature}</span>
                           </div>
@@ -342,7 +410,8 @@ export default function Suites() {
               Ready to Transform Your Business?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Discover how our AI-powered suites can revolutionize your operations and drive unprecedented growth.
+              Discover how our AI-powered suites can revolutionize your
+              operations and drive unprecedented growth.
             </p>
             <Button
               size="lg"
